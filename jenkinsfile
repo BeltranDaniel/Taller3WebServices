@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('deploy') {
             steps {
-                sh 'cp rp-portfolio /deploy'
+                sh 'cp ./rp-portfolio /deploy'
             }
         }
     }
