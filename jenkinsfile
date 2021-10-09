@@ -1,9 +1,13 @@
 pipeline {
     agent any
     stages {
+        stage('linter'){
+            steps {
+                sh 'pylint ./rp-portfolio'
+            }
+        }
         stage('deploy') {
             steps {
-                sh 'python --version'
                 sh 'cp -r ./rp-portfolio /deploy'
             }
         }
