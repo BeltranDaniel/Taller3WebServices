@@ -1,11 +1,15 @@
 pipeline {
   agent any
   stages { 
-        
+        stage('set-up'){
+          steps {
+            sh 'cp -r ./rp-portfolio /deploy'
+          }
+        }
         stage('lint'){
           steps{ 
                script {
-                 def ret = sh(script: 'pylint ./rp-portfolio', returnStatus: true)
+                 def ret = sh(script: 'docker exec django-app pylint ./rp-portfolio', returnStatus: true)
                  if( ret != 0 ){
                   currentBuild.result = 'UNSTABLE'
                  }
@@ -14,12 +18,9 @@ pipeline {
         }
         stage('deploy') {
             steps {
-               sh 'cp -r ./rp-portfolio /deploy'
-               
-               sh 'docker exec python python rp-portfolio/manage.py makemigrations'
-               sh 'docker exec python python rp-portfolio/manage.py migrate'
-               sh 'docker restart python'
-              
+               sh 'docker exec django-app python rp-portfolio/manage.py makemigrations'
+               sh 'docker exec django-app python rp-portfolio/manage.py migrate'
+               sh 'docker restart django-app'
            }
         }
     }
