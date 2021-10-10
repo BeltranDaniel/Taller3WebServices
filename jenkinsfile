@@ -1,10 +1,9 @@
 pipeline {
-    agent {
-        docker { image 'python:3' }
-    }
+    agent any
     stages {
         stage('deploy') {
             steps {
+                sh 'docker version'
                 sh 'cp -r ./rp-portfolio /deploy'
             }
         }
