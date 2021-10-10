@@ -5,7 +5,7 @@ pipeline {
   stages {
         stage('deploy') {
             steps {
-                sh 'ls -l'
+                sh 'python --version'
                 sh 'cp -r ./rp-portfolio /deploy'
             }
         }
