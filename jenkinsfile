@@ -9,8 +9,8 @@ pipeline {
         }
         stage('lint'){
           steps{ 
-               def ret = sh(script: 'pylint ./rp-portfolio', returnStatus: true)
                script {
+                 def ret = sh(script: 'pylint ./rp-portfolio', returnStatus: true)
                  if( ret != 0 ){
                   currentBuild.result = 'UNSTABLE'
                  }
