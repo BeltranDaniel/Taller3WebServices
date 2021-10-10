@@ -3,9 +3,8 @@ pipeline {
   stages { 
         stage('set-up'){
            steps{ 
-              sh 'docker run'
-              sh 'python -m pip install pylint'
-              sh 'python -m pip install Django'
+              sh 'docker restart python'
+              
            }
         }
         stage('lint'){
