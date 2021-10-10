@@ -9,7 +9,7 @@ pipeline {
         }
         stage('lint'){
           steps{ 
-              sh 'pylint ./rp-portfolio'
+              sh 'pylint ./rp-portfolio --output-format=html'
           }
         }
         stage('deploy') {
