@@ -20,7 +20,7 @@ pipeline {
             steps {
                sh 'docker exec django-app python rp-portfolio/manage.py makemigrations'
                sh 'docker exec django-app python rp-portfolio/manage.py migrate'
-               sh 'docker restart django-app python'
+               sh 'docker restart django-app'
            }
         }
     }
