@@ -9,11 +9,10 @@ pipeline {
         }
         stage('lint'){
           steps{ 
-               try {
-                  sh 'pylint ./rp-portfolio --output-format=html'
-                } catch (err) {
-                   echo err.getMessage()
-                }
+               def ret = sh(script: 'pylint ./rp-portfolio', returnStatus: true)
+               if( ret != 0 ){
+                currentBuild.result = 'UNSTABLE'
+               }
           }
         }
         stage('deploy') {
