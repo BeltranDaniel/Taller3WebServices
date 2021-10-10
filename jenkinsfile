@@ -1,11 +1,7 @@
 pipeline {
   agent any
   stages { 
-        stage('set-up'){
-           steps{
-              
-           }
-        }
+        
         stage('lint'){
           steps{ 
                script {
