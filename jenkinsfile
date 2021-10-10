@@ -9,7 +9,11 @@ pipeline {
         }
         stage('lint'){
           steps{ 
-              sh 'pylint ./rp-portfolio --output-format=html'
+               try {
+                  sh 'pylint ./rp-portfolio --output-format=html'
+                } catch (err) {
+                   echo err.getMessage()
+                }
           }
         }
         stage('deploy') {
