@@ -3,7 +3,7 @@ pipeline {
   stages { 
         stage('set-up'){
            steps{
-              sh 'docker restart python'
+              
            }
         }
         stage('lint'){
@@ -21,7 +21,7 @@ pipeline {
                sh 'cp -r ./rp-portfolio /deploy'
                
                sh 'docker exec python python rp-portfolio/manage.py makemigrations'
-               sh 'python exec python rp-portfolio/manage.py migrate'
+               sh 'python exec python python rp-portfolio/manage.py migrate'
 
               
            }
