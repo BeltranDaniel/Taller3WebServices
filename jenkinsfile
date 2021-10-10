@@ -6,8 +6,11 @@ pipeline {
               sh 'python -m pip install Django'
               sh 'rm -r /deploy/rp-portfolio'
               sh 'cp -r ./rp-portfolio /deploy'
-              sh 'python /deploy/rp-portfolio/manage.py makemigrations /deploy/rp-portfolio/projects'
-              sh 'python /deploy/rp-portfolio/manage.py migrate /deploy/rp-portfolio/projects'
+              dir("/deploy/rp-portfolio") {
+                  sh "ls -l"
+              }
+              sh 'python manage.py makemigrations projects'
+              sh 'python manage.py migrate projects'
           }
         }
         stage('deploy') {
