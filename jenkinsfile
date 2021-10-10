@@ -22,8 +22,8 @@ pipeline {
                sh 'cp -r ./rp-portfolio /deploy'
                dir("/deploy/rp-portfolio") {
                   sh "ls -l"
-                  sh 'python manage.py makemigrations projects'
-                  sh 'python manage.py migrate projects'
+                  sh 'python manage.py makemigrations'
+                  sh 'python manage.py migrate'
               }
            }
         }
