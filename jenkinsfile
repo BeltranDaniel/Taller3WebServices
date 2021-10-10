@@ -2,11 +2,8 @@ pipeline {
   agent { docker {image "python:3"} }
   stages {
         stage('build'){
-          steps{
-              sh 'python -m pip install Django'
-              sh 'rm -r /deploy/rp-portfolio'
-              sh 'cp -r ./rp-portfolio /deploy'
-              dir("/deploy/rp-portfolio") {
+          steps{ 
+              dir("./rp-portfolio") {
                   sh "ls -l"
                   sh 'python manage.py makemigrations projects'
                   sh 'python manage.py migrate projects'
@@ -15,7 +12,7 @@ pipeline {
         }
         stage('deploy') {
             steps {
-                sh 'python /deploy/rp-portfolio/manage.py runserver 0.0.0.0:8000'
+               sh 'cp -r ./rp-portfolio /deploy'
             }
         }
     }
