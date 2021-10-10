@@ -19,8 +19,8 @@ pipeline {
         stage('deploy') {
             steps {
                sh 'docker restart django-app'
-               sh 'docker exec django-app cd rp-portfolio; python manage.py makemigrations projects'
-               sh 'docker exec django-app cd rp-portfolio; python manage.py migrate projects'
+               sh 'docker exec django-app -w rp-portfolio python manage.py makemigrations projects' '
+               sh 'docker exec django-app -w rp-portfolio python manage.py migrate projects'
            }
         }
     }
