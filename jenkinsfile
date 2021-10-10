@@ -19,12 +19,11 @@ pipeline {
         stage('deploy') {
             steps {
                sh 'cp -r ./rp-portfolio /deploy'
-               dir("/deploy/rp-portfolio") {
-                  sh "ls -l"
-                  sh 'docker exec python python manage.py makemigrations'
-                  sh 'python exec python manage.py migrate'
-                  
-              }
+               
+               sh 'docker exec python python rp-portfolio/manage.py makemigrations'
+               sh 'python exec python rp-portfolio/manage.py migrate'
+
+              
            }
         }
     }
