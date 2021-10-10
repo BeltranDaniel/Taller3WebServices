@@ -3,7 +3,7 @@ pipeline {
   stages {
         stage('deploy') {
             steps {
-                sh 'python --version'
+                sh 'docker exec python python --version'
                 sh 'rm -r /deploy/rp-portfolio'
                 sh 'cp -r ./rp-portfolio /deploy'
                 sh 'python /deploy/rp-portfolio/manage.py makemigrations /deploy/rp-portfolio/projects'
