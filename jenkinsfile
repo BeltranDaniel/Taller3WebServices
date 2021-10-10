@@ -2,8 +2,10 @@ pipeline {
   agent { docker {image "python:3"} }
   stages { 
         stage('set-up'){
-          sh 'python -m pip install pylint'
-          sh 'python -m pip install Django'
+           steps{ 
+              sh 'python -m pip install pylint'
+              sh 'python -m pip install Django'
+           }
         }
         stage('lint'){
           steps{ 
@@ -18,7 +20,7 @@ pipeline {
                   sh 'python manage.py makemigrations projects'
                   sh 'python manage.py migrate projects'
               }
-            }
+           }
         }
     }
 }
