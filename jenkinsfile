@@ -2,9 +2,8 @@ pipeline {
   agent any
   stages { 
         stage('set-up'){
-           steps{ 
+           steps{
               sh 'docker restart python'
-              
            }
         }
         stage('lint'){
@@ -22,8 +21,9 @@ pipeline {
                sh 'cp -r ./rp-portfolio /deploy'
                dir("/deploy/rp-portfolio") {
                   sh "ls -l"
-                  sh 'python manage.py makemigrations'
-                  sh 'python manage.py migrate'
+                  sh 'docker exec python python manage.py makemigrations'
+                  sh 'python exec python manage.py migrate'
+                  
               }
            }
         }
