@@ -3,11 +3,6 @@ pipeline {
         docker { image 'python:3' }
     }
     stages {
-        stage('linter'){
-            steps {
-                sh 'pylint ./rp-portfolio'
-            }
-        }
         stage('deploy') {
             steps {
                 sh 'cp -r ./rp-portfolio /deploy'
