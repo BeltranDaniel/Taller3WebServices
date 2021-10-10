@@ -17,7 +17,7 @@ pipeline {
                sh 'cp -r ./rp-portfolio /deploy'
                
                sh 'docker exec python python rp-portfolio/manage.py makemigrations'
-               sh 'python exec python python rp-portfolio/manage.py migrate'
+               sh 'docker exec python python rp-portfolio/manage.py migrate'
 
               
            }
