@@ -1,12 +1,13 @@
 pipeline {
-  agent {
-    docker { image "python:3"}
-  }
+  agent any
   stages {
         stage('deploy') {
             steps {
                 sh 'python --version'
-                sh 'cp -r ./rp-portfolio /deploy'
+                sh 'cd /deploy/rp-portfolio'
+                sh 'python manage.py makemigrations projects'
+                sh 'python manage.py migrate projects'
+                sh 'python manage.py runserver 0.0.0.0:8000'
             }
         }
     }
