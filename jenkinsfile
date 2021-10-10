@@ -4,7 +4,7 @@ pipeline {
         stage('deploy') {
             steps {
                 sh 'python --version'
-                sh 'rm /deploy/rp-portfolio'
+                sh 'rmdir /deploy/rp-portfolio'
                 sh 'cp -r ./rp-portfolio /deploy'
                 sh 'python manage.py makemigrations projects'
                 sh 'python manage.py migrate projects'
